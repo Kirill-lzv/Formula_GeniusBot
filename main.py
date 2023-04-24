@@ -19,29 +19,21 @@ def start(message):
 def send_text(message):
   if message.text == '➗ Математика':
     req = bot.send_message(message.chat.id, 'Напиши название нужной тебе формулы')
-    # print(k, 123)
     bot.register_next_step_handler(req, find_in_db_math)
-    # print(1)
   elif message.text == '🧑‍🔬 Физика':
     mess = bot.send_message(message.chat.id, 'Напиши название нужной тебе формулы')
-    # print(k, 123)
     bot.register_next_step_handler(mess, find_in_db_phys)
     
   else:
     bot.send_message(message.chat.id, 'Выберите предмет из списка', reply_markup=keyboard())
     
     
-    #из input по ключу достать значение из БД
 
 def find_in_db_math(message):
   c = 0
   for i in formuls_math:
     c += 1
-    # print(i, 2)
-    # print(message.text, 3)
-    # print(i[0], i[1], 4)
     if message.text.lower() == i[0]:
-      # print(i[0], 0)
       bot.send_message(message.chat.id, i[1], reply_markup=keyboard())
       break
     elif c == len_formuls_math:
@@ -54,7 +46,6 @@ def find_in_db_phys(message):
   for i in formuls_phys:
     c += 1
     if message.text.lower() == i[0]:
-      # print(i[0], 0)
       bot.send_message(message.chat.id, i[1], reply_markup=keyboard())
       break
     elif c == len_formuls_phys:
